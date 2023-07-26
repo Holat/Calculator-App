@@ -8,6 +8,7 @@ type BtnProp = {
   setOperator?: React.Dispatch<React.SetStateAction<string>>;
   setResult?: React.Dispatch<React.SetStateAction<string>>;
   isOp?: boolean;
+  isEqu?: boolean;
   num1?: string;
   num2?: string;
   op?: string;

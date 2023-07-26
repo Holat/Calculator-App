@@ -1,6 +1,5 @@
 import {
   StyleSheet,
-  Text,
   View,
   StatusBar,
   Platform,
@@ -18,7 +17,45 @@ const Home = () => {
   const [num1, setNum1] = useState("");
   const [num2, setNum2] = useState("");
   const [result, setResult] = useState("");
-  const [operator, setOperator] = useState("");
+  const [op, setOperator] = useState("");
+  const clearProp = {
+    setInput,
+    setOperator,
+    setNum1,
+    setNum2,
+    setResult,
+  };
+
+  const operatorProp = {
+    setResult,
+    setInput,
+    setOperator,
+    setNum1,
+    setNum2,
+    num1,
+    num2,
+    result,
+    op,
+  };
+
+  const numProp = {
+    setOperator,
+    setInput,
+    setNum1,
+    setNum2,
+    num1,
+    num2,
+    result,
+    op,
+  };
+
+  const equProp = {
+    setResult,
+    setInput,
+    setOperator,
+    setNum1,
+    setNum2,
+  };
 
   return (
     <SafeAreaView style={{ flex: 1 }}>
@@ -33,211 +70,34 @@ const Home = () => {
         </View>
         <View style={styles.btnG}>
           <View style={styles.btnCont}>
-            <CalcBtn
-              value="C"
-              setInput={setInput}
-              setOperator={setOperator}
-              setNum1={setNum1}
-              setNum2={setNum2}
-              setResult={setResult}
-            />
+            <CalcBtn value="C" {...clearProp} />
             <CalcBtn value="()" />
-            <CalcBtn
-              value="%"
-              setInput={setInput}
-              setOperator={setOperator}
-              isOp={true}
-              num1={num1}
-              num2={num2}
-              op={operator}
-              setResult={setResult}
-              result={result}
-              setNum1={setNum1}
-              setNum2={setNum2}
-            />
-            <CalcBtn
-              value="/"
-              setInput={setInput}
-              setOperator={setOperator}
-              isOp={true}
-              num1={num1}
-              num2={num2}
-              op={operator}
-              setResult={setResult}
-              result={result}
-              setNum1={setNum1}
-              setNum2={setNum2}
-            />
+            <CalcBtn value="%" isOp={true} isEqu={false} {...operatorProp} />
+            <CalcBtn value="/" isOp={true} isEqu={false} {...operatorProp} />
           </View>
           <View style={styles.btnCont}>
-            <CalcBtn
-              value="7"
-              setNum1={setNum1}
-              setNum2={setNum2}
-              setInput={setInput}
-              setOperator={setOperator}
-              isOp={false}
-              num1={num1}
-              num2={num2}
-              op={operator}
-            />
-            <CalcBtn
-              value="8"
-              setNum1={setNum1}
-              setNum2={setNum2}
-              setInput={setInput}
-              setOperator={setOperator}
-              isOp={false}
-              num1={num1}
-              num2={num2}
-              op={operator}
-            />
-            <CalcBtn
-              value="9"
-              setNum1={setNum1}
-              setNum2={setNum2}
-              setInput={setInput}
-              isOp={false}
-              num1={num1}
-              op={operator}
-              num2={num2}
-              setOperator={setOperator}
-            />
-            <CalcBtn
-              value="x"
-              setInput={setInput}
-              setOperator={setOperator}
-              isOp={true}
-              num1={num1}
-              num2={num2}
-              op={operator}
-              setResult={setResult}
-              result={result}
-              setNum1={setNum1}
-              setNum2={setNum2}
-            />
+            <CalcBtn value="7" isOp={false} {...numProp} />
+            <CalcBtn value="8" isOp={false} {...numProp} />
+            <CalcBtn value="9" isOp={false} {...numProp} />
+            <CalcBtn value="x" isOp={true} isEqu={false} {...operatorProp} />
           </View>
           <View style={styles.btnCont}>
-            <CalcBtn
-              value="4"
-              setNum1={setNum1}
-              setNum2={setNum2}
-              setInput={setInput}
-              isOp={false}
-              num1={num1}
-              num2={num2}
-              op={operator}
-              setOperator={setOperator}
-            />
-            <CalcBtn
-              value="5"
-              setNum1={setNum1}
-              setNum2={setNum2}
-              setInput={setInput}
-              isOp={false}
-              num1={num1}
-              num2={num2}
-              op={operator}
-              setOperator={setOperator}
-            />
-            <CalcBtn
-              value="6"
-              setNum1={setNum1}
-              setNum2={setNum2}
-              setInput={setInput}
-              isOp={false}
-              num1={num1}
-              num2={num2}
-              op={operator}
-              setOperator={setOperator}
-            />
-            <CalcBtn
-              value="-"
-              setInput={setInput}
-              setOperator={setOperator}
-              isOp={true}
-              num1={num1}
-              num2={num2}
-              op={operator}
-              setResult={setResult}
-              result={result}
-              setNum1={setNum1}
-              setNum2={setNum2}
-            />
+            <CalcBtn value="4" isOp={false} {...numProp} />
+            <CalcBtn value="5" isOp={false} {...numProp} />
+            <CalcBtn value="6" isOp={false} {...numProp} />
+            <CalcBtn value="-" isOp={true} isEqu={false} {...operatorProp} />
           </View>
           <View style={styles.btnCont}>
-            <CalcBtn
-              value="1"
-              setNum1={setNum1}
-              setNum2={setNum2}
-              setInput={setInput}
-              isOp={false}
-              num1={num1}
-              num2={num2}
-              op={operator}
-              setOperator={setOperator}
-            />
-            <CalcBtn
-              value="2"
-              setNum1={setNum1}
-              setNum2={setNum2}
-              setInput={setInput}
-              isOp={false}
-              num1={num1}
-              num2={num2}
-              op={operator}
-              setOperator={setOperator}
-            />
-            <CalcBtn
-              value="3"
-              setNum1={setNum1}
-              setNum2={setNum2}
-              setInput={setInput}
-              isOp={false}
-              num1={num1}
-              num2={num2}
-              op={operator}
-              setOperator={setOperator}
-            />
-            <CalcBtn
-              value="+"
-              setInput={setInput}
-              setOperator={setOperator}
-              isOp={true}
-              num1={num1}
-              num2={num2}
-              op={operator}
-              setResult={setResult}
-              result={result}
-              setNum1={setNum1}
-              setNum2={setNum2}
-            />
+            <CalcBtn value="1" isOp={false} {...numProp} />
+            <CalcBtn value="2" isOp={false} {...numProp} />
+            <CalcBtn value="3" isOp={false} {...numProp} />
+            <CalcBtn value="+" isOp={true} isEqu={false} {...operatorProp} />
           </View>
           <View style={styles.btnCont}>
             <CalcBtn value="+/-" />
-            <CalcBtn
-              value="0"
-              setNum1={setNum1}
-              setNum2={setNum2}
-              setInput={setInput}
-              num1={num1}
-              num2={num2}
-              isOp={false}
-              op={operator}
-              setOperator={setOperator}
-            />
-            <CalcBtn
-              value="."
-              setNum1={setNum1}
-              setNum2={setNum2}
-              setInput={setInput}
-              num1={num1}
-              num2={num2}
-              isOp={false}
-              op={operator}
-              setOperator={setOperator}
-            />
-            <CalcBtn value="=" />
+            <CalcBtn value="0" isOp={false} {...numProp} />
+            <CalcBtn value="." isOp={false} {...numProp} />
+            <CalcBtn value="=" isOp={true} isEqu={true} {...operatorProp} />
           </View>
         </View>
       </View>

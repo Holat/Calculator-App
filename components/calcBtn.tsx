@@ -1,10 +1,4 @@
-import {
-  Pressable,
-  StyleSheet,
-  Text,
-  TouchableOpacity,
-  View,
-} from "react-native";
+import { StyleSheet, Text, TouchableOpacity } from "react-native";
 import React, { useState } from "react";
 
 import FONTS from "@/constants/FONTS";
@@ -22,9 +16,10 @@ const CalcBtn = ({
   num2,
   op,
   setResult,
-  result,
-}: BtnProp) => {
-  const [op2, setOp2] = useState("");
+  isEqu,
+}: // result,
+BtnProp) => {
+  const [equ, setEqu] = useState("");
 
   const numInput = () => {
     if (
@@ -50,9 +45,15 @@ const CalcBtn = ({
       }
     }
 
-    if (setOperator && setInput && value !== "C" && isOp === true) {
+    if (
+      setOperator &&
+      setInput &&
+      value !== "C" &&
+      isOp === true &&
+      isEqu === false
+    ) {
       const handleSetOp = (prevOp: string) => {
-        if (num1 !== "") {
+        if (num1 !== "" && num2 === "") {
           if (prevOp === "") {
             setInput((prevValue) => prevValue + value);
             return value;
@@ -60,6 +61,9 @@ const CalcBtn = ({
             setInput((prevValue) => prevValue.slice(0, -1) + value);
             return value;
           }
+        } else if (num1 !== "" && num2 !== "") {
+          setInput((prevValue) => prevValue + value);
+          return value;
         } else return "";
       };
       setOperator(handleSetOp);
@@ -74,7 +78,8 @@ const CalcBtn = ({
       setResult &&
       setNum1 &&
       setNum2 &&
-      setOperator
+      setOperator &&
+      setInput
     ) {
       if (num1 !== "" && num2 !== "" && op !== "") {
         let res = 0;
@@ -102,10 +107,14 @@ const CalcBtn = ({
         }
         let final = res.toString();
         setResult(final);
+        setEqu(final);
         setNum1(final);
         setNum2("");
-        // setOperator("");
-        // setResult("");
+        if (isEqu === true) {
+          setInput(final);
+          setResult("");
+          setOperator("");
+        }
       }
     }
   };
