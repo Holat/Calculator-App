@@ -51,6 +51,9 @@ const Home = () => {
               num2={num2}
               op={operator}
               setResult={setResult}
+              result={result}
+              setNum1={setNum1}
+              setNum2={setNum2}
             />
             <CalcBtn
               value="/"
@@ -61,6 +64,9 @@ const Home = () => {
               num2={num2}
               op={operator}
               setResult={setResult}
+              result={result}
+              setNum1={setNum1}
+              setNum2={setNum2}
             />
           </View>
           <View style={styles.btnCont}>
@@ -106,6 +112,9 @@ const Home = () => {
               num2={num2}
               op={operator}
               setResult={setResult}
+              result={result}
+              setNum1={setNum1}
+              setNum2={setNum2}
             />
           </View>
           <View style={styles.btnCont}>
@@ -151,6 +160,9 @@ const Home = () => {
               num2={num2}
               op={operator}
               setResult={setResult}
+              result={result}
+              setNum1={setNum1}
+              setNum2={setNum2}
             />
           </View>
           <View style={styles.btnCont}>
@@ -196,6 +208,9 @@ const Home = () => {
               num2={num2}
               op={operator}
               setResult={setResult}
+              result={result}
+              setNum1={setNum1}
+              setNum2={setNum2}
             />
           </View>
           <View style={styles.btnCont}>
@@ -211,7 +226,17 @@ const Home = () => {
               op={operator}
               setOperator={setOperator}
             />
-            <CalcBtn value="." />
+            <CalcBtn
+              value="."
+              setNum1={setNum1}
+              setNum2={setNum2}
+              setInput={setInput}
+              num1={num1}
+              num2={num2}
+              isOp={false}
+              op={operator}
+              setOperator={setOperator}
+            />
             <CalcBtn value="=" />
           </View>
         </View>

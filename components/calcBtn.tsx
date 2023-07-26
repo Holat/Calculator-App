@@ -22,9 +22,11 @@ const CalcBtn = ({
   num2,
   op,
   setResult,
+  result,
 }: BtnProp) => {
   const [op2, setOp2] = useState("");
-  const handleBtnPress = () => {
+
+  const numInput = () => {
     if (
       setNum1 &&
       setInput &&
@@ -62,12 +64,22 @@ const CalcBtn = ({
       };
       setOperator(handleSetOp);
     }
+  };
 
-    if (num1 && num2 && isOp === true && setResult) {
+  const calulate = () => {
+    if (
+      num1 &&
+      num2 &&
+      isOp === true &&
+      setResult &&
+      setNum1 &&
+      setNum2 &&
+      setOperator
+    ) {
       if (num1 !== "" && num2 !== "" && op !== "") {
         let res = 0;
-        let Num1 = parseInt(num1);
-        let Num2 = parseInt(num2);
+        let Num1 = parseFloat(num1);
+        let Num2 = parseFloat(num2);
         switch (op) {
           case "+":
             res = Num1 + Num2;
@@ -85,14 +97,20 @@ const CalcBtn = ({
             res = Num1 % Num2;
             break;
           default:
-            res = NaN;
+            res = 0;
             break;
         }
         let final = res.toString();
         setResult(final);
+        setNum1(final);
+        setNum2("");
+        // setOperator("");
+        // setResult("");
       }
     }
+  };
 
+  const clear = () => {
     if (
       value === "C" &&
       setInput &&
@@ -107,6 +125,12 @@ const CalcBtn = ({
       setNum2("");
       setResult("");
     }
+  };
+
+  const handleBtnPress = () => {
+    numInput();
+    calulate();
+    clear();
   };
 
   return (
