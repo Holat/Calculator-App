@@ -5,18 +5,22 @@ import {
   StatusBar,
   Platform,
   SafeAreaView,
+  TextInput,
 } from "react-native";
-import React from "react";
+import React, { useState } from "react";
 import { Feather, MaterialCommunityIcons } from "@expo/vector-icons";
 
 import CalcBtn from "@/components/calcBtn";
+import FONTS from "@/constants/FONTS";
 
 const Home = () => {
+  const [input, setInput] = useState<string>("20");
   return (
     <SafeAreaView style={{ flex: 1 }}>
       <View style={styles.cont}>
         <View style={styles.input}>
-          <Text></Text>
+          <TextInput style={styles.input1} value={input} editable={false} />
+          <TextInput style={styles.input2} value={input} editable={false} />
         </View>
         <View style={styles.navBar}>
           <MaterialCommunityIcons name="history" size={24} color="#99989C" />
@@ -70,10 +74,27 @@ const styles = StyleSheet.create({
   input: {
     flex: 1,
   },
+  input1: {
+    marginBottom: 30,
+    fontSize: 45,
+    paddingVertical: 10,
+    paddingHorizontal: 10,
+    textAlign: "right",
+    fontFamily: FONTS.RemRegular,
+    color: "white",
+    marginTop: 15,
+  },
+  input2: {
+    textAlign: "right",
+    color: "#99989C",
+    padding: 10,
+    fontSize: 25,
+    fontFamily: FONTS.RemRegular,
+  },
   navBar: {
     paddingVertical: 10,
     paddingHorizontal: 15,
-    marginBottom: 15,
+    marginBottom: 25,
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "space-between",
