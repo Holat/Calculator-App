@@ -29,6 +29,7 @@ export default function RootLayout() {
     RemBold: require("../assets/fonts/REM-Bold.ttf"),
     RemSemibold: require("../assets/fonts/REM-SemiBold.ttf"),
     RemMedium: require("../assets/fonts/REM-MediumItalic.ttf"),
+    RemRegular: require("../assets/fonts/REM-Regular.ttf"),
   });
 
   // Expo Router uses Error Boundaries to catch errors in the navigation tree.

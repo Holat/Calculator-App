@@ -11,15 +11,17 @@ import FONTS from "@/constants/FONTS";
 
 const CalcBtn = ({ value }: { value: string }) => {
   const getTextClr = () => {
-    if (!Number(value) && value != "C" && value != "0" && value != "=") {
+    if (!Number(value) && value != "C" && value != "0" && value != "=")
       return "#2E8510";
-    } else if (value == "C") {
-      return "#FF6F66";
-    } else return "white";
+    else if (value == "C") return "#FF6F66";
+    else return "white";
   };
   return (
     <TouchableOpacity
-      style={[styles.cont, { backgroundColor: value == "=" ? "#2E8510" : "" }]}
+      style={[
+        styles.cont,
+        { backgroundColor: value == "=" ? "#2E8510" : "#141414" },
+      ]}
       activeOpacity={0.7}
     >
       <Text style={[styles.btn, { color: getTextClr() }]}>{value}</Text>
@@ -36,7 +38,7 @@ const styles = StyleSheet.create({
     aspectRatio: 1,
     alignItems: "center",
     justifyContent: "center",
-    backgroundColor: "#141414",
+    fontFamily: FONTS.RemRegular,
   },
   btn: {
     fontFamily: FONTS.RemBold,
