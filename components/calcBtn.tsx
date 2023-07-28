@@ -19,8 +19,6 @@ const CalcBtn = ({
   isEqu,
 }: // result,
 BtnProp) => {
-  const [equ, setEqu] = useState("");
-
   const numInput = () => {
     if (
       setNum1 &&
@@ -107,7 +105,6 @@ BtnProp) => {
         }
         let final = res.toString();
         setResult(final);
-        setEqu(final);
         setNum1(final);
         setNum2("");
         if (isEqu === true) {

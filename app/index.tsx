@@ -5,6 +5,7 @@ import {
   Platform,
   SafeAreaView,
   TextInput,
+  Pressable,
 } from "react-native";
 import React, { useState } from "react";
 import { Feather, MaterialCommunityIcons } from "@expo/vector-icons";
@@ -49,12 +50,19 @@ const Home = () => {
     op,
   };
 
-  const equProp = {
-    setResult,
-    setInput,
-    setOperator,
-    setNum1,
-    setNum2,
+  const handlePress = () => {
+    if (num1 !== "" && num2 === "" && op === "") {
+      setNum1((prevNum1) => prevNum1.slice(0, -1));
+      setInput((prevIn) => prevIn.slice(0, -1));
+    } else if ((num1 !== "" && op !== "" && num2 === "") || op === "") {
+      setNum1((prevNum1) => prevNum1.slice(0, -1));
+      setOperator((prevOp) => prevOp.slice(0, -1));
+      setInput((prevIn) => prevIn.slice(0, -1));
+      setResult("");
+    } else {
+      setNum2((prevNum2) => prevNum2.slice(0, -1));
+      setInput((prevIn) => prevIn.slice(0, -1));
+    }
   };
 
   return (
@@ -66,7 +74,13 @@ const Home = () => {
         </View>
         <View style={styles.navBar}>
           <MaterialCommunityIcons name="history" size={24} color="#99989C" />
-          <Feather name="delete" size={24} color="#22AA44" />
+          <Pressable onPress={handlePress}>
+            <Feather
+              name="delete"
+              size={24}
+              color={input === "" ? "#385826" : "#22AA44"}
+            />
+          </Pressable>
         </View>
         <View style={styles.btnG}>
           <View style={styles.btnCont}>
