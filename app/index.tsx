@@ -68,7 +68,7 @@ const Home = () => {
   return (
     <SafeAreaView style={{ flex: 1 }}>
       <View style={styles.cont}>
-        <View style={styles.input}>
+        <View>
           <TextInput style={styles.input1} value={input} editable={false} />
           <TextInput style={styles.input2} value={result} editable={false} />
         </View>
@@ -127,9 +127,6 @@ const styles = StyleSheet.create({
     paddingHorizontal: 10,
     paddingTop: Platform.OS === "android" ? StatusBar.currentHeight : 0,
   },
-  input: {
-    flex: 1,
-  },
   input1: {
     marginBottom: 30,
     fontSize: 45,
@@ -157,7 +154,7 @@ const styles = StyleSheet.create({
   },
   btnG: {
     justifyContent: "space-between",
-    flex: 2,
+    flex: 1,
     borderTopColor: "#1b1b1b",
     borderTopWidth: 2,
     paddingVertical: 15,

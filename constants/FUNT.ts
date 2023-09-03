@@ -11,4 +11,29 @@ const getTextClr = (value: string) => {
   else return "white";
 };
 
-export { getTextClr };
+const getOp = (op: string | undefined, Num1: number, Num2: number) => {
+  let res = 0;
+  switch (op) {
+    case "+":
+      res = Num1 + Num2;
+      break;
+    case "-":
+      res = Num1 - Num2;
+      break;
+    case "/":
+      res = Num1 / Num2;
+      break;
+    case "x":
+      res = Num1 * Num2;
+      break;
+    case "%":
+      res = Num1 % Num2;
+      break;
+    default:
+      res = 0;
+      break;
+  }
+  return res;
+};
+
+export { getTextClr, getOp };
