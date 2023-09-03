@@ -3,7 +3,7 @@ import React, { useState } from "react";
 
 import FONTS from "@/constants/FONTS";
 import { BtnProp } from "@/types/types";
-import { getTextClr } from "@/constants/FUNT";
+import { getTextClr, getOp } from "@/constants/FUNT";
 
 const CalcBtn = ({
   value,
@@ -20,122 +20,74 @@ const CalcBtn = ({
 }: // result,
 BtnProp) => {
   const numInput = () => {
-    if (
-      setNum1 &&
-      setInput &&
-      value !== "C" &&
-      isOp === false &&
-      setNum2 &&
-      setOperator
-    ) {
+    if (value !== "C" && isOp === false) {
       if (
         (num1 === "" && op === "" && num2 === "") ||
         (num1 !== "" && op === "" && num2 === "")
       ) {
-        setNum1((prevNum1) => prevNum1 + value);
-        setInput((prevInput) => prevInput + value);
+        setNum1?.((prevNum1) => prevNum1 + value);
+        setInput?.((prevInput) => prevInput + value);
       } else if (
         (num1 !== "" && op !== "" && num2 === "") ||
         (num1 !== "" && op !== "" && num2 !== "")
       ) {
-        setNum2((prevNum1) => prevNum1 + value);
-        setInput((prevInput) => prevInput + value);
+        setNum2?.((prevNum1) => prevNum1 + value);
+        setInput?.((prevInput) => prevInput + value);
       }
     }
 
-    if (
-      setOperator &&
-      setInput &&
-      value !== "C" &&
-      isOp === true &&
-      isEqu === false
-    ) {
+    if (value !== "C" && isOp === true && isEqu === false) {
       const handleSetOp = (prevOp: string) => {
         if (num1 !== "" && num2 === "") {
           if (prevOp === "") {
-            setInput((prevValue) => prevValue + value);
+            setInput?.((prevValue) => prevValue + value);
             return value;
           } else {
-            setInput((prevValue) => prevValue.slice(0, -1) + value);
+            setInput?.((prevValue) => prevValue.slice(0, -1) + value);
             return value;
           }
         } else if (num1 !== "" && num2 !== "") {
-          setInput((prevValue) => prevValue + value);
+          setInput?.((prevValue) => prevValue + value);
           return value;
         } else return "";
       };
-      setOperator(handleSetOp);
+      setOperator?.(handleSetOp);
     }
   };
 
-  const calulate = () => {
-    if (
-      num1 &&
-      num2 &&
-      isOp === true &&
-      setResult &&
-      setNum1 &&
-      setNum2 &&
-      setOperator &&
-      setInput
-    ) {
+  const calculate = () => {
+    if (num1 && num2 && isOp === true) {
       if (num1 !== "" && num2 !== "" && op !== "") {
         let res = 0;
         let Num1 = parseFloat(num1);
         let Num2 = parseFloat(num2);
-        switch (op) {
-          case "+":
-            res = Num1 + Num2;
-            break;
-          case "-":
-            res = Num1 - Num2;
-            break;
-          case "/":
-            res = Num1 / Num2;
-            break;
-          case "x":
-            res = Num1 * Num2;
-            break;
-          case "%":
-            res = Num1 % Num2;
-            break;
-          default:
-            res = 0;
-            break;
-        }
+        res = getOp(op, Num1, Num2);
         let final = res.toString();
-        setResult(final);
-        setNum1(final);
-        setNum2("");
+        setResult?.(final);
+        setNum1?.(final);
+        setNum2?.("");
         if (isEqu === true) {
-          setInput(final);
-          setResult("");
-          setOperator("");
+          setInput?.(final);
+          setResult?.("");
+          setOperator?.("");
         }
       }
     }
   };
 
   const clear = () => {
-    if (
-      value === "C" &&
-      setInput &&
-      setOperator &&
-      setNum1 &&
-      setNum2 &&
-      setResult
-    ) {
-      setInput("");
-      setOperator("");
-      setNum1("");
-      setNum2("");
-      setResult("");
+    if (value === "C") {
+      setInput?.("");
+      setOperator?.("");
+      setNum1?.("");
+      setNum2?.("");
+      setResult?.("");
     }
   };
 
   const handleBtnPress = () => {
     numInput();
-    calulate();
+    calculate();
     clear();
   };
 
